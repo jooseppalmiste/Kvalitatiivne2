@@ -33,9 +33,14 @@
 function kuva(kohad){
     console.log(kohad);
     for(let koht of kohad){
-        L.marker([koht[0], koht[1]])
-          .addTo(kaart)
-          .bindTooltip(koht[4] + " - " + koht[2], {permanent: true});
+        L.marker([koht[0], koht[1]]).addTo(kaart);
+        L.tooltip({
+            permanent: true,
+            direction: "right"
+        })
+        .setLatLng([koht[0], koht[1]])
+        .setContent(koht[4] + " - " + koht[2])
+        .addTo(kaart);
     }
 }
 
