@@ -30,12 +30,10 @@
 		    ).then(d => d.json()).then(kuva);
 	   console.log("tellitud");
   }
-function kuva(kohad){
-    console.log(kohad);
-    for(let koht of kohad){
-        L.marker([koht[0], koht[1]])
-            .addTo(kaart)
-            .bindTooltip(koht[4] + " - " + koht[2], {permanent: true});
+ function kuva(kohad){
+	console.log(kohad);
+	for(let koht of kohad){
+	  L.marker([koht[0], koht[1]]).addTo(kaart);
     }
 }
 
