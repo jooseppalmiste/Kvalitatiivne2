@@ -18,17 +18,25 @@
 	  attribution: "Map: <a  href='http://www.maaamet.ee/'>Maa-amet</a>",
 	  tms: true,
     }).addTo(kaart);
-	  fetch("https://script.google.com/macros/s/AKfycby7StgeSaB5m5RgzZ2CgycJQFVyZcc6aFvw30FIbtLYsno6OVfzmLVadzSQgmm6mDV1zA/exec"
+	  fetch("https://script.google.com/macros/s/AKfycbxs_RyymkTI6PYOBV3xjcHEfv555pxwC6wHReHisPEIMV_3XS5xBWXHnQe6ASXkUPY/exec"
 		    ).then(d => d.json()).then(kuva);
 	   console.log("tellitud");
   }
-  function kuva(kohad){
-	console.log(kohad);
-	for(let koht of kohad){
-	  L.marker([koht[0], koht[1]]).addTo(kaart);
-	}
-  }
+ function kuva(kohad){
+    console.log(kohad);
 
+    for(let koht of kohad){
+
+        L.marker([koht[0], koht[1]])
+            .addTo(kaart)
+            .bindPopup(
+                "<b>" + koht[4] + "</b><br>" +
+                koht[2] + "<br>" +
+                koht[3]
+            );
+
+    }
+}
   </script>
  </head>  
  <body onload="algus()">
