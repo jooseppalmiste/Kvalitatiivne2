@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Üritused</title>
+
+    <script>
+        function loe() {
+            fetch("AKfycbyvbG_QlgQBHRNnLFYCc3uw8BBcrjSiDcGXFn9leSrkdIs1DWpCLcLJwVWIA3NIhK1PmA")
+                .then(d => d.json())
+                .then(kuva);
+        }
+
+        function kuva(andmed) {
+
+            let ala = document.getElementById("uritused");
+            ala.innerHTML = "";
+
+            // alustame reast 1, sest rida 0 on pealkirjad
+            for (let i = 1; i < andmed.length; i++) {
+
+                let nimi = andmed[i][0];
+                let staatus = andmed[i][1];
+
+                let rida = document.createElement("p");
+
+                if (staatus.toLowerCase() == "toimub") {
+                    rida.innerHTML =
+                        "<b>" + nimi + "</b> — <span style='color:green'>TOIMUB</span>";
+                }
+
+                else if (staatus.toLowerCase() == "tühistatud") {
+                    rida.innerHTML =
+                        "<b>" + nimi + "</b> — <span style='color:red'>TÜHISTATUD</span>";
+                }
+
+                else {
+                    rida.innerHTML =
+                        "<b>" + nimi + "</b> — " + staatus;
+                }
+
+                ala.appendChild(rida);
+            }
+        }
+    </script>
+</head>
+
+<body onload="loe(); setInterval(loe, 10000)">
+
+    <h1>Üritused</h1>
+
+    <div id="uritused">
+        Laeb...
+    </div>
+
+</body>
+</html>
